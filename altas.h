@@ -2,80 +2,204 @@
 #include <stdlib.h>
 
 void altas(struct persona **ptr);
-int nuevapersona();
-void nuevoAlumno();
 
 void altas(struct persona **ptr){
+    int p = 0;
 
-    struct persona *nuevo;
+    printf("Cuantas personas desea registrar: ");
+    scanf("%d", &p);
+    if(p == 1){
+        struct persona *nuevo;
 
-    printf("Ingresa una nueva persona\n");
+        printf("Ingresa una nueva persona\n");
 
-    nuevo = (struct persona*)malloc(sizeof(struct persona));
+        // Reservar memoria para la persona
+        nuevo = (struct persona *)malloc(sizeof(struct persona));
 
-    nuevo->ptrAlum = (struct alumno*)malloc(sizeof(struct alumno));
+        if(nuevo == NULL){
+            printf("No se pudo reservar memoria para la persona.\n");
+            return;
+        }
 
-    if(nuevo->ptrAlum == NULL){
+        // Reservar memoria para el alumno
+        nuevo->ptrAlum = (struct alumno *)malloc(sizeof(struct alumno));
 
-    printf("No se pudo reservar memoria para el alumno\n");
-    free(nuevo);
-    return;
+        if(nuevo->ptrAlum == NULL){
+            printf("No se pudo reservar memoria para el alumno.\n");
+            free(nuevo);
+            return;
+        }
 
-}
-    if(nuevo == NULL){
-        printf("No se reservo memoria\n");
-        return;
-    }
+        // Inicializar datos
+        nuevo->edad = 0;
+        nuevo->genero = ' ';
+        
+        nuevo->ptrsig = NULL;
 
-    nuevo->edad = 0;
-    nuevo->genero = ' ';
-    nuevo->ptrAlum = NULL;
+        if(*ptr == NULL){
+            *ptr = nuevo;
+        }
+        else{
+            struct persona *aux;
+        
+            aux = *ptr;
+        
+            while(aux->ptrsig != NULL)
+            {
+                aux = aux->ptrsig;
+            }
+        
+            aux->ptrsig = nuevo;
+        }
 
-    nuevo->ptrsig = *ptr;
-    *ptr = nuevo;
+        printf("\nPersona agregada correctamente.\n");
 
-    printf("Persona agregada correctamente\n");
-}
-    //datos de la persona 
+        // los datos de perona 
+
         printf("\nNombre: ");
         scanf(" %[^\n]", nuevo->nombre);
 
         printf("Edad: ");
-        scanf("%d",&nuevo->edad);
+        scanf("%d", &nuevo->edad);
 
         printf("Genero: ");
-        scanf(" %c",&nuevo->genero);
+        scanf(" %c", &nuevo->genero);  
 
         printf("Fecha de nacimiento: ");
-        scanf("%s",nuevo->fn);
+        scanf(" %s", nuevo->fn);
 
-    //datos del alumnos 
+        // los datos del alumno 
+
         printf("\nMatricula: ");
-        scanf("%s",nuevo->ptrAlum->matricula);
+        scanf("%s", nuevo->ptrAlum->matricula);
 
         printf("Carrera: ");
-        scanf("%s",nuevo->ptrAlum->carrera);
+        scanf("%s", nuevo->ptrAlum->carrera);
 
         printf("Semestre: ");
-        scanf("%d",&nuevo->ptrAlum->semestre);
+        scanf("%d", &nuevo->ptrAlum->semestre);
 
         printf("Correo: ");
-        scanf("%s",nuevo->ptrAlum->correo);
-    //calificaciones 
-        float calif[5][5];
-        int i,j;
+        scanf("%s", nuevo->ptrAlum->correo);
 
-    printf("\nIngrese las calificaciones\n");
+        // calificacione s
+        
+        
+        printf("\nIngrese las calificaciones:\n");
+        
+        for(int i = 0; i < 5; i++){
+        
+            printf("\nMateria %d\n", i + 1);
+        
+            for(int j = 0; j < 3; j++){
+            
+                printf("Parcial %d: ", j + 1);
+                scanf("%f", &nuevo->ptrAlum->calif[i][j]);
+            
+            }
+        }
+    
+        printf("\nRegistro guardado correctamente.\n");
 
-    for(i=0;i<5;i++){
+    } else if (p > 1) {
+        int i = 1;
+        do{
 
-        printf("\nMateria %d\n",i+1);
+        struct persona *nuevo;
 
-        for(j=0;j<5;j++){
+        printf("Ingresa una nueva persona\n");
 
-            printf("Parcial %d: ",j+1);
-            scanf("%f",&nuevo->ptrAlum->calif[i][j]);
+        // Reservar memoria para la persona
+        nuevo = (struct persona *)malloc(sizeof(struct persona));
 
+        if(nuevo == NULL){
+            printf("No se pudo reservar memoria para la persona.\n");
+            return;
         }
 
+        // Reservar memoria para el alumno
+        nuevo->ptrAlum = (struct alumno *)malloc(sizeof(struct alumno));
+
+        if(nuevo->ptrAlum == NULL){
+            printf("No se pudo reservar memoria para el alumno.\n");
+            free(nuevo);
+            return;
+        }
+
+        // Inicializar datos
+        nuevo->edad = 0;
+        nuevo->genero = ' ';
+        nuevo->ptrsig = NULL;
+
+        if(*ptr == NULL){
+            *ptr = nuevo;
+        }
+        else{
+            struct persona *aux;
+        
+            aux = *ptr;
+        
+            while(aux->ptrsig != NULL)
+            {
+                aux = aux->ptrsig;
+            }
+        
+            aux->ptrsig = nuevo;
+        }
+
+        printf("\nPersona agregada correctamente.\n");
+
+        // los datos de perona 
+
+        printf("\nNombre: ");
+        scanf(" %[^\n]", nuevo->nombre);
+
+        printf("Edad: ");
+        scanf("%d", &nuevo->edad);
+
+        printf("Genero: ");
+        scanf(" %c", &nuevo->genero);  
+
+        printf("Fecha de nacimiento: ");
+        scanf(" %s", nuevo->fn);
+
+        // los datos del alumno 
+
+        printf("\nMatricula: ");
+        scanf("%s", nuevo->ptrAlum->matricula);
+
+        printf("Carrera: ");
+        scanf("%s", nuevo->ptrAlum->carrera);
+
+        printf("Semestre: ");
+        scanf("%d", &nuevo->ptrAlum->semestre);
+
+        printf("Correo: ");
+        scanf("%s", nuevo->ptrAlum->correo);
+
+        // calificacione s
+        
+        
+        printf("\nIngrese las calificaciones:\n");
+        
+        for(int i = 0; i < 5; i++){
+        
+            printf("\nMateria %d\n", i + 1);
+        
+            for(int j = 0; j < 3; j++){
+            
+                printf("Parcial %d: ", j + 1);
+                scanf("%f", &nuevo->ptrAlum->calif[i][j]);
+            
+            }
+        }
+    
+        printf("\nRegistro guardado correctamente.\n");
+        
+        i++;
+        }while(i <= p);
     }
+
+    
+}
+// codido para registrar mas personas 

@@ -1,18 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "menu.h"
-#include "altas.h"
-#include "bajas.h"
-
-struct alumno;
 
 struct persona{
-
     char nombre[50];
     int edad;
     char genero;
-    char fn[11];
-
+    char fn[20];
     struct alumno *ptrAlum;
     struct persona *ptrsig;
 };
@@ -26,6 +19,11 @@ struct alumno{
     struct alumno *sigAlumno;
 };
 
+#include "menu.h"
+#include "altas.h"
+#include "bajas.h"
+#include "mostrar.h"
+
 int main(){
 
     struct persona *ptr = NULL;
@@ -38,15 +36,44 @@ int main(){
 
             case 1:
                 altas(&ptr);
+               
+                    
                 break;
 
             case 2:
                 printf("Mostrar datos\n");
+                Mostrar(ptr);
                 break;
 
             case 3:
-                printf("Liberar ultimo dato\n");
-                break;
+                printf("bajas \n");
+                int op;
+
+                        printf("\nBAJAS\n");
+                        printf("1.- Una persona\n");
+                        printf("2.- Varias personas\n");
+                        printf("3.- Todas las personas\n");
+                        printf("eliga una opcion");
+                        scanf("%d",&op);
+
+                        switch(op)
+                        {
+                            case 1:
+                                bajaUna(&ptr);
+                                break;
+
+                            case 2:
+                                bajaVarias(&ptr);
+                                break;
+
+                            case 3:
+                                bajaTodas(&ptr);
+                                break;
+
+                            default:
+                                printf("Opcion no valida\n");
+                        }
+                 break;
 
             case 4:
                 printf("Salir\n");
