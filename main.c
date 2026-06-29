@@ -2,14 +2,17 @@
 #include <stdlib.h>
 #include "menu.h"
 #include "altas.h"
+#include "bajas.h"
 
 struct alumno;
 
 struct persona{
-    char *nombre;
+
+    char nombre[50];
     int edad;
     char genero;
-    char fn[8];
+    char fn[11];
+
     struct alumno *ptrAlum;
     struct persona *ptrsig;
 };
@@ -20,11 +23,12 @@ struct alumno{
     int semestre;
     char correo[23];
     float calif[5][5];
+    struct alumno *sigAlumno;
 };
 
 int main(){
 
-    struct persona *ptrsig;
+    struct persona *ptr = NULL;
     int opcion;
 
     do{
@@ -37,16 +41,19 @@ int main(){
                 break;
 
             case 2:
-            
+                printf("Mostrar datos\n");
                 break;
 
             case 3:
-            
+                printf("Liberar ultimo dato\n");
                 break;
 
             case 4:
-                printf("salir\n");
+                printf("Salir\n");
                 break;
+
+            default:
+                printf("Opcion no valida\n");
         }
 
     }while(opcion != 4);
