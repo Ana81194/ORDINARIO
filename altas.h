@@ -62,7 +62,7 @@ void altas(struct persona **ptr){
         printf("Edad: ");
         scanf("%d", &nuevo->edad);
 
-        printf("Genero: ");
+        printf("Genero (M/F): ");
         scanf(" %c", &nuevo->genero);  
 
         printf("Fecha de nacimiento: ");
@@ -202,4 +202,3 @@ void altas(struct persona **ptr){
 
     
 }
-// codido para registrar mas personas 

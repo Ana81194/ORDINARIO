@@ -23,6 +23,9 @@ struct alumno{
 #include "altas.h"
 #include "bajas.h"
 #include "mostrar.h"
+#include "modificar.h"
+#include "salir.h"
+
 
 int main(){
 
@@ -76,14 +79,22 @@ int main(){
                  break;
 
             case 4:
-                printf("Salir\n");
+                printf("Mosdificar los  datos\n");
+                Modificar(ptr);
                 break;
+
+            case 5:          
+                salir(&ptr);
+                printf("saquese del programa \n");
+                break;
+
+                printf("se elimino la base de datos correctamente jsjsjs ");
 
             default:
                 printf("Opcion no valida\n");
         }
 
-    }while(opcion != 4);
+    }while(opcion != 5);
 
     return 0;
 }

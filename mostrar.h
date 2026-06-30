@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 
 void Mostrar(struct persona *ptr);
@@ -45,22 +46,181 @@ void Mostrar(struct persona *ptr){
                     i++;
                 }
                 break;
+
             case 2:
+            {
+                char carrera[5];
+                int encontrado = 0;
+
+                printf("Ingrese la carrera: ");
+                scanf("%s", carrera);
+
+                struct persona *aux = ptr;
+
+                while(aux != NULL)
+                {
+                    if(strcmp(aux->ptrAlum->carrera, carrera) == 0)
+                    {
+                        printf("\nNombre: %s\n", aux->nombre);
+                        printf("Edad: %d\n", aux->edad);
+                        printf("Genero: %c\n", aux->genero);
+                        printf("Fecha de nacimiento: %s\n", aux->fn);
+
+                        printf("Matricula: %s\n", aux->ptrAlum->matricula);
+                        printf("Carrera: %s\n", aux->ptrAlum->carrera);
+                        printf("Semestre: %d\n", aux->ptrAlum->semestre);
+                        printf("Correo: %s\n", aux->ptrAlum->correo);
+
+                        encontrado = 1;
+                    }
+
+                    aux = aux->ptrsig;
+                }
+
+                if(encontrado == 0)
+                {
+                    printf("No se encontraron alumnos.\n");
+                }
+                }
                 break;
+
             case 3:
+
+                {
+                    int semestre;
+                    int encontrado = 0;
+
+                    printf("Ingrese el semestre: ");
+                    scanf("%d",&semestre);
+
+                    struct persona *aux = ptr;
+
+                    while(aux != NULL)
+                    {
+                        if(aux->ptrAlum->semestre == semestre)
+                        {
+                            printf("\nNombre: %s\n", aux->nombre);
+                            printf("Matricula: %s\n", aux->ptrAlum->matricula);
+                            printf("Carrera: %s\n", aux->ptrAlum->carrera);
+                            printf("Semestre: %d\n", aux->ptrAlum->semestre);
+
+                            encontrado = 1;
+                        }
+
+                        aux = aux->ptrsig;
+                    }
+
+                    if(encontrado == 0)
+                    {
+                        printf("No se encontraron alumnos.\n");
+                    }
+                    }
                  break;
+
             case 4:
+                {
+                    char carrera[5];
+                    int semestre;
+                    int encontrado = 0;
+
+                    printf("Carrera: ");
+                    scanf("%s",carrera);
+
+                    printf("Semestre: ");
+                    scanf("%d",&semestre);
+
+                    struct persona *aux = ptr;
+
+                    while(aux != NULL)
+                    {
+                        if(strcmp(aux->ptrAlum->carrera,carrera)==0 &&
+                        aux->ptrAlum->semestre==semestre)
+                        {
+                            printf("\nNombre: %s\n",aux->nombre);
+                            printf("Matricula: %s\n",aux->ptrAlum->matricula);
+
+                            encontrado = 1;
+                        }
+
+                        aux = aux->ptrsig;
+                    }
+
+                    if(encontrado==0)
+                    {
+                        printf("No se encontraron alumnos.\n");
+                    }
+                }
                 break;
+
             case 5:
+            {
+                char nombre[50];
+                int encontrado = 0;
+
+                printf("Nombre: ");
+                scanf(" %[^\n]",nombre);
+
+                struct persona *aux = ptr;
+
+                while(aux != NULL)
+                {
+                    if(strcmp(aux->nombre,nombre)==0)
+                    {
+                        printf("\nNombre: %s\n",aux->nombre);
+                        printf("Matricula: %s\n",aux->ptrAlum->matricula);
+
+                        encontrado = 1;
+                        break;
+                    }
+
+                    aux = aux->ptrsig;
+                }
+
+                if(encontrado==0)
+                {
+                    printf("Persona no encontrada.\n");
+                }
+            }
                 break;
+
             case 6:
+                {
+                    char matricula[10];
+                    int encontrado = 0;
+
+                    printf("Matricula: ");
+                    scanf("%s",matricula);
+
+                    struct persona *aux = ptr;
+
+                    while(aux != NULL)
+                    {
+                        if(strcmp(aux->ptrAlum->matricula,matricula)==0)
+                        {
+                            printf("\nNombre: %s\n",aux->nombre);
+                            printf("Matricula: %s\n",aux->ptrAlum->matricula);
+
+                            encontrado = 1;
+                            break;
+                        }
+
+                        aux = aux->ptrsig;
+                    }
+
+                    if(encontrado==0)
+                    {
+                        printf("Matricula no encontrada.\n");
+                    }
+
+            
+                }
                 break;
             case 7:
+                 printf("\nRegresando al menu principal...\n");
+                 return;
                 break;
             default:
                 printf("Opcion no valida\n");
         }
     }
 }
-
-//mostrar carrera seleccionada

@@ -11,7 +11,8 @@ int menuPrincipal(void){
     printf("1.- Dar de alta \n");
     printf("2.- Mostrar todos los datos\n");
     printf("3.- Dar de baja\n");
-    printf("4.- Salir\n");
+     printf("4.-modificar datos\n");
+    printf("5.- Salir\n");
     printf("Seleccione una opcion: ");
     scanf("%d",&opcion);
 
@@ -34,3 +35,21 @@ int menuMostrar(void){
 
     return opcion;
 }
+
+int menuModificar()
+{
+    int opcion;
+
+    printf("\n====== MODIFICAR ======\n");
+    printf("1. Datos de la persona\n");
+    printf("2. Datos del alumno\n");
+    printf("3. Calificaciones de un parcial\n");
+    printf("4. Calificaciones de una materia\n");
+    printf("5. Regresar\n");
+    printf("Opcion: ");
+    scanf("%d", &opcion);
+
+    return opcion;
+}
+
+           
